@@ -2,7 +2,7 @@
 
 Um tema Ghost moderno e dark inspirado em estética gótica e cyberpunk. Projetado para ensinar IA de forma envolvente e misteriosa.
 
-![GinanRM Preview](https://raw.githubusercontent.com/RegiaJG/ginanrm-theme/main/assets/images/hero-city.jpg)
+![GinanRM Preview](https://raw.githubusercontent.com/RegiaJG/ginanrm-theme/main/assets/images/GinanRM.png)
 
 ## ✨ Características
 
