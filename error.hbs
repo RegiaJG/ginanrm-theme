@@ -1,0 +1,30 @@
+{{!< default}}
+
+<div class="error-page bg-city">
+    <div class="hero-background">
+        <div class="stars"></div>
+    </div>
+    
+    <h1 class="error-code">{{statusCode}}</h1>
+    
+    <h2 class="error-title">
+        {{#match statusCode 404}}
+        Página não encontrada
+        {{else}}
+        Algo deu errado
+        {{/match}}
+    </h2>
+    
+    <p class="error-description">
+        {{#match statusCode 404}}
+        Parece que Charlotte não conseguiu encontrar essa página nas sombras. Ela pode ter sido movida ou excluída.
+        {{else}}
+        {{message}}
+        {{/match}}
+    </p>
+    
+    <a href="{{@site.url}}" class="btn btn-primary">
+        Voltar para Home
+    </a>
+</div>
+

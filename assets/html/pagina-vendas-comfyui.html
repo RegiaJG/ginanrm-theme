@@ -1,0 +1,764 @@
+<!-- 
+    PÁGINA DE VENDAS - COMFYUI NA PRÁTICA
+    Cole este código no "Code Injection" → "Post/Page Header" do Ghost Admin
+    Para a página que você criou no Ghost
+-->
+
+<style>
+/* Estilos da Página de Vendas */
+.sales-page-wrapper {
+    padding: var(--space-12) 0;
+    background: var(--lc-black);
+}
+
+/* Hero Section */
+.sales-hero {
+    background: linear-gradient(135deg, #000000 0%, #1a0d2e 50%, #2d1b3d 100%);
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin: -60px -20px 60px -20px;
+}
+
+.sales-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239966cc' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+.sales-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.sales-hero-cover {
+    margin-bottom: 40px;
+}
+
+.ebook-cover-image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(153, 102, 204, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.ebook-cover-image:hover {
+    transform: scale(1.05);
+}
+
+.sales-hero-title {
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(153, 102, 204, 0.5);
+    line-height: 1.2;
+}
+
+.sales-hero-subtitle {
+    font-size: 1.25rem;
+    color: #d1d5db;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* CTA Buttons */
+.sales-cta-primary {
+    margin-top: 40px;
+}
+
+.btn-sales-primary,
+.btn-sales-final {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 20px 40px;
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: #000000;
+    background: #9966cc;
+    border: 2px solid #9966cc;
+    border-radius: 12px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(153, 102, 204, 0.5), 0 4px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-sales-primary:hover,
+.btn-sales-final:hover {
+    background: #b88cd9;
+    border-color: #b88cd9;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(153, 102, 204, 0.7), 0 6px 20px rgba(0, 0, 0, 0.4);
+    color: #000000;
+}
+
+.btn-text-main {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.btn-text-sub {
+    font-size: 0.875rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.sales-cta-note {
+    margin-top: 16px;
+    font-size: 0.875rem;
+    color: #9ca3af;
+}
+
+/* Section Titles */
+.sales-section-title {
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 48px;
+    text-shadow: 0 0 15px rgba(153, 102, 204, 0.4);
+}
+
+@media (min-width: 768px) {
+    .sales-section-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Seção: O Que Você NÃO Precisa */
+.sales-no-need {
+    padding: 48px 20px;
+    background: #1a0d2e;
+    border-radius: 16px;
+    margin: 48px 0;
+}
+
+.no-need-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+    .no-need-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.no-need-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: #000000;
+    border: 1px solid rgba(153, 102, 204, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.no-need-item:hover {
+    border-color: #9966cc;
+    transform: translateX(5px);
+}
+
+.no-need-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.no-need-text {
+    font-size: 1rem;
+    color: #d1d5db;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Benefits Section */
+.sales-benefits {
+    padding: 64px 20px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .benefits-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.benefit-card {
+    background: #1a0d2e;
+    border: 2px solid rgba(153, 102, 204, 0.3);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    border-color: #9966cc;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(153, 102, 204, 0.3);
+}
+
+.benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.benefit-title {
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #9966cc;
+    margin-bottom: 12px;
+}
+
+.benefit-description {
+    font-size: 1rem;
+    color: #d1d5db;
+    line-height: 1.6;
+}
+
+/* Seção de Entregáveis */
+.sales-deliverables {
+    padding: 64px 20px;
+    background: #1a0d2e;
+    border-radius: 16px;
+    margin: 48px 0;
+}
+
+.sales-deliverables-subtitle {
+    text-align: center;
+    font-size: 1.125rem;
+    color: #d1d5db;
+    margin-bottom: 32px;
+    font-style: italic;
+}
+
+.deliverables-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .deliverables-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.deliverable-card {
+    background: #000000;
+    border: 2px solid rgba(153, 102, 204, 0.3);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.deliverable-card:hover {
+    border-color: #9966cc;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(153, 102, 204, 0.3);
+}
+
+.deliverable-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.deliverable-title {
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #9966cc;
+    margin-bottom: 12px;
+}
+
+.deliverable-description {
+    font-size: 1rem;
+    color: #d1d5db;
+    line-height: 1.6;
+}
+
+/* CTA Section */
+.sales-cta-section {
+    padding: 64px 20px;
+}
+
+.sales-cta-box {
+    background: linear-gradient(135deg, #1a0d2e, #2d1b3d);
+    border: 2px solid #9966cc;
+    border-radius: 16px;
+    padding: 48px 24px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(153, 102, 204, 0.3);
+}
+
+.sales-cta-title {
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.sales-cta-description {
+    font-size: 1.125rem;
+    color: #d1d5db;
+    margin-bottom: 32px;
+}
+
+/* FAQ Section */
+.sales-faq {
+    padding: 64px 20px;
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 16px;
+    background: #1a0d2e;
+    border: 1px solid rgba(153, 102, 204, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: #9966cc;
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    background: transparent;
+    border: none;
+    text-align: left;
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.faq-question:hover {
+    color: #9966cc;
+}
+
+.faq-icon {
+    width: 24px;
+    height: 24px;
+    color: #9966cc;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 16px;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq-answer p {
+    padding: 0 24px 20px;
+    font-size: 1rem;
+    color: #d1d5db;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Guarantee Section */
+.sales-guarantee {
+    padding: 64px 20px;
+}
+
+.guarantee-box {
+    background: linear-gradient(135deg, #000000, #1a0d2e);
+    border: 3px solid #9966cc;
+    border-radius: 16px;
+    padding: 48px 24px;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(153, 102, 204, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.guarantee-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+
+.guarantee-title {
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #9966cc;
+    margin-bottom: 16px;
+}
+
+.guarantee-description {
+    font-size: 1.125rem;
+    color: #d1d5db;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* CTA Final */
+.sales-cta-final {
+    padding: 80px 20px;
+    background: linear-gradient(180deg, #000000 0%, #1a0d2e 100%);
+    border-radius: 16px;
+    margin: 48px 0;
+}
+
+.sales-cta-final-box {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.sales-cta-final-title {
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
+    text-shadow: 0 0 20px rgba(153, 102, 204, 0.5);
+}
+
+.sales-cta-final-subtitle {
+    font-size: 1.125rem;
+    color: #d1d5db;
+    margin-bottom: 32px;
+}
+
+.sales-cta-security {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    margin-top: 16px;
+}
+
+/* Container */
+.sales-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+    .sales-hero-title {
+        font-size: 1.75rem;
+    }
+    
+    .sales-hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .btn-sales-primary,
+    .btn-sales-final {
+        padding: 16px 32px;
+        font-size: 1rem;
+    }
+    
+    .btn-text-main {
+        font-size: 1.25rem;
+    }
+}
+</style>
+
+<div class="sales-page-wrapper">
+    <!-- Hero Section -->
+    <section class="sales-hero">
+        <div class="sales-hero-content">
+            <!-- A imagem da capa será inserida automaticamente pelo Ghost como feature image -->
+            <div class="sales-hero-cover" id="sales-hero-cover"></div>
+            
+            <h1 class="sales-hero-title">ComfyUI na Prática: Start Point</h1>
+            <p class="sales-hero-subtitle">O tutorial ideal para iniciar no universo do ComfyUI</p>
+            
+            <!-- CTA Principal -->
+            <div class="sales-cta-primary">
+                <a href="https://pay.hotmart.com/P103575870O" class="btn btn-sales-primary" target="_blank" rel="noopener">
+                    <span class="btn-text-main">COMPRAR AGORA</span>
+                    <span class="btn-text-sub">Acesso Imediato</span>
+                </a>
+                <p class="sales-cta-note">✓ Pagamento 100% Seguro • Hotmart</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="sales-container">
+        <!-- Seção: O Que Você NÃO Precisa -->
+        <section class="sales-no-need">
+            <h2 class="sales-section-title">O Que Você <span style="color: #9966cc;">NÃO</span> Precisa</h2>
+            <div class="no-need-grid">
+                <div class="no-need-item">
+                    <span class="no-need-icon">❌</span>
+                    <p class="no-need-text">Placa de Vídeo cara ou PC Gamer</p>
+                </div>
+                <div class="no-need-item">
+                    <span class="no-need-icon">❌</span>
+                    <p class="no-need-text">Conhecimento avançado de Linux/Python</p>
+                </div>
+                <div class="no-need-item">
+                    <span class="no-need-icon">❌</span>
+                    <p class="no-need-text">Falar inglês fluente</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: O Que Você Vai Dominar -->
+        <section class="sales-benefits">
+            <h2 class="sales-section-title">O Que Você Vai Dominar</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">☁️</div>
+                    <h3 class="benefit-title">Alquimia na Nuvem</h3>
+                    <p class="benefit-description">Como configurar e operar GPUs Industriais (RTX A5000/A4000) remotamente, pagando apenas centavos por hora.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛡️</div>
+                    <h3 class="benefit-title">Instalação Blindada</h3>
+                    <p class="benefit-description">Como fugir dos instaladores quebrados usando nosso método exclusivo via JupyterLab.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💾</div>
+                    <h3 class="benefit-title">Permanência</h3>
+                    <p class="benefit-description">Como configurar o Network Volume para salvar seus arquivos e nunca perder seu trabalho ao desligar a máquina.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3 class="benefit-title">Poder de Processamento</h3>
+                    <p class="benefit-description">Tenha o poder de processamento de um estúdio profissional rodando liso no seu navegador, sem fritar sua máquina.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Entregáveis -->
+        <section class="sales-deliverables">
+            <h2 class="sales-section-title">🎁 Entregáveis de Elite</h2>
+            <p class="sales-deliverables-subtitle">O que facilita sua vida</p>
+            <div class="deliverables-grid">
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">📄</div>
+                    <h3 class="deliverable-title">O Manual Tático (PDF)</h3>
+                    <p class="deliverable-description">Direto, visual e sem enrolação. Tudo que você precisa saber para dominar o ComfyUI na nuvem.</p>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">💻</div>
+                    <h3 class="deliverable-title">Script de Instalação Automatizado (.sh)</h3>
+                    <p class="deliverable-description">Um arquivo exclusivo nosso. Você arrasta, solta e ele instala todo o ambiente para você.</p>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">⚙️</div>
+                    <h3 class="deliverable-title">Workflow Mestre (.json)</h3>
+                    <p class="deliverable-description">O fluxo pronto para gerar sua primeira imagem. É só carregar e rodar.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Intermediário -->
+        <section class="sales-cta-section">
+            <div class="sales-cta-box">
+                <h2 class="sales-cta-title">Pronto Para Transformar Seu Conhecimento?</h2>
+                <p class="sales-cta-description">Garanta seu acesso agora e comece sua jornada imediatamente.</p>
+                <a href="https://pay.hotmart.com/P103575870O" class="btn btn-sales-primary" target="_blank" rel="noopener">
+                    <span class="btn-text-main">QUERO MEU E-BOOK AGORA</span>
+                    <span class="btn-text-sub">Acesso Imediato e Vitalício</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="sales-faq">
+            <h2 class="sales-section-title">Perguntas Frequentes</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Como recebo o conteúdo após a compra?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Após a confirmação do pagamento, você receberá o acesso imediato através do email cadastrado. O PDF, script e workflow estarão disponíveis na sua área de membros da Hotmart.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Preciso ter conhecimento técnico avançado?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Não! O manual foi criado para iniciantes. Você não precisa de conhecimento avançado de Linux, Python ou inglês fluente. Tudo está explicado passo a passo.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Quanto custa usar o RunPod?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O RunPod cobra apenas pelos minutos que você usa. Com GPUs RTX A5000/A4000, você paga centavos por hora. Muito mais barato que investir R$ 15.000 em uma placa de vídeo!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>O pagamento é seguro?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Utilizamos a plataforma Hotmart, que é 100% segura e criptografada. Todas as transações são processadas de forma segura. Aceitamos cartão de crédito, boleto e PIX.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Tenho garantia de satisfação?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Oferecemos garantia incondicional de 7 dias. Se não ficar satisfeito, devolvemos 100% do seu investimento, sem perguntas ou burocracias.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Garantia -->
+        <section class="sales-guarantee">
+            <div class="guarantee-box">
+                <div class="guarantee-icon">🛡️</div>
+                <h2 class="guarantee-title">Garantia Incondicional de 7 Dias</h2>
+                <p class="guarantee-description">
+                    Teste nosso e-book por 7 dias completos. Se por qualquer motivo não ficar satisfeito, 
+                    devolvemos 100% do seu investimento, sem perguntas ou burocracias.
+                </p>
+            </div>
+        </section>
+
+        <!-- CTA Final -->
+        <section class="sales-cta-final" id="comprar-agora">
+            <div class="sales-cta-final-box">
+                <h2 class="sales-cta-final-title">Não Deixe Esta Oportunidade Passar</h2>
+                <p class="sales-cta-final-subtitle">Acesso imediato • Garantia de 7 dias • Suporte completo</p>
+                <a href="https://pay.hotmart.com/P103575870O" class="btn btn-sales-final" target="_blank" rel="noopener">
+                    <span class="btn-text-main">COMPRAR AGORA</span>
+                    <span class="btn-text-sub">Acesso Vitalício</span>
+                </a>
+                <p class="sales-cta-security">
+                    🔒 Pagamento 100% Seguro • Hotmart
+                </p>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+// JavaScript para FAQ Accordion
+(function() {
+    document.querySelectorAll('.faq-question').forEach(function(question) {
+        question.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector('.faq-icon');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item').forEach(function(item) {
+                if (item !== this.parentElement) {
+                    const otherQuestion = item.querySelector('.faq-question');
+                    const otherAnswer = item.querySelector('.faq-answer');
+                    const otherIcon = item.querySelector('.faq-icon');
+                    otherQuestion.setAttribute('aria-expanded', 'false');
+                    otherAnswer.style.maxHeight = null;
+                    if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                }
+            }.bind(this));
+            
+            // Toggle current FAQ
+            this.setAttribute('aria-expanded', !isExpanded);
+            if (isExpanded) {
+                answer.style.maxHeight = null;
+                if (icon) icon.style.transform = 'rotate(0deg)';
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                if (icon) icon.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+    
+    // Adiciona a imagem da capa do Ghost feature image ao hero
+    window.addEventListener('DOMContentLoaded', function() {
+        const heroCover = document.getElementById('sales-hero-cover');
+        if (heroCover) {
+            // Procura pela imagem de feature do Ghost
+            const featureImage = document.querySelector('.post-feature-image img, figure.post-feature-image img, img[src*="content/images"]');
+            if (featureImage && featureImage.src) {
+                const img = document.createElement('img');
+                img.src = featureImage.src;
+                img.alt = featureImage.alt || 'Capa do E-book';
+                img.className = 'ebook-cover-image';
+                heroCover.appendChild(img);
+                // Remove a imagem original se estiver visível
+                if (featureImage.closest('.post-feature-image')) {
+                    featureImage.closest('.post-feature-image').style.display = 'none';
+                }
+            }
+        }
+    });
+})();
+</script>
+

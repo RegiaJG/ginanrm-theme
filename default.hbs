@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}"{{#match @custom.enable_animations}} class="animations-enabled"{{/match}}>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{meta_title}}</title>
+    
+    {{!-- Preconnect to fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    {{!-- Google Fonts (theme defaults) --}}
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    {{!-- Theme CSS --}}
+    <link rel="stylesheet" href="{{asset "css/main.css"}}">
+    
+    {{!-- Custom colors and background from Ghost settings --}}
+    <style>
+        :root {
+            {{#if @custom.primary_color}}
+            --color-primary: {{@custom.primary_color}};
+            {{/if}}
+            {{#if @custom.accent_color}}
+            --color-accent: {{@custom.accent_color}};
+            {{/if}}
+            {{#if @custom.background_color}}
+            --color-background: {{@custom.background_color}};
+            {{/if}}
+        }
+        
+        {{#if @custom.background_image}}
+        body {
+            background-image: url('{{@custom.background_image}}') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            background-repeat: no-repeat !important;
+            background-color: transparent !important;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--color-background, rgba(13, 13, 24, 0.75));
+            opacity: 0.25;
+            z-index: -2;
+            pointer-events: none;
+        }
+        {{else if @site.cover_image}}
+        body {
+            background-image: url('{{@site.cover_image}}') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            background-repeat: no-repeat !important;
+            background-color: transparent !important;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--color-background, rgba(13, 13, 24, 0.75));
+            opacity: 0.25;
+            z-index: -2;
+            pointer-events: none;
+        }
+        {{else if @custom.background_color}}
+        body {
+            background-color: var(--color-background) !important;
+        }
+        {{/if}}
+    </style>
+    
+    {{!-- Ghost head injection --}}
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}{{#match @custom.header_style "Transparent"}} header-transparent{{/match}}">
+    
+    {{!-- Site Header --}}
+    {{> header}}
+    
+    {{!-- Mobile Navigation --}}
+    {{> mobile-nav}}
+    
+    {{!-- Main Content --}}
+    <main class="site-main">
+        {{{body}}}
+    </main>
+    
+    {{!-- Site Footer --}}
+    {{> footer}}
+    
+    {{!-- Charlotte Helper (Optional) --}}
+    {{#if @custom.show_charlotte_helper}}
+    {{> lumi-helper}}
+    {{/if}}
+    
+    {{!-- Search Modal --}}
+    {{> search-modal}}
+    
+    {{!-- Image Lightbox Modal --}}
+    <div id="lightbox-modal" class="lightbox-modal">
+        <button class="lightbox-close" aria-label="Fechar"></button>
+        <div class="lightbox-content">
+            <img id="lightbox-image" class="lightbox-image" src="" alt="">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+    </div>
+    
+    {{!-- Theme JavaScript --}}
+    <script src="{{asset "js/main.js"}}"></script>
+    
+    {{!-- Ghost foot injection --}}
+    {{ghost_foot}}
+</body>
+</html>
+

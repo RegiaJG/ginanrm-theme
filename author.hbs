@@ -1,0 +1,89 @@
+{{!< default}}
+
+{{!-- Author Header --}}
+<header class="hero" style="min-height: 50vh; padding-top: calc(var(--header-height) + var(--space-12));">
+    <div class="hero-background bg-gradient-sunset">
+        <div class="stars"></div>
+    </div>
+    
+    <div class="hero-content">
+        {{!-- Author Avatar --}}
+        {{#if profile_image}}
+        <img 
+            src="{{img_url profile_image size="m"}}" 
+            alt="{{name}}" 
+            style="width: 120px; height: 120px; border-radius: var(--radius-full); object-fit: cover; margin-bottom: var(--space-6); border: 4px solid var(--lc-neon-cyan); box-shadow: var(--glow-cyan);"
+        >
+        {{/if}}
+        
+        <h1 class="hero-title" style="font-size: var(--text-2xl);">
+            {{name}}
+        </h1>
+        
+        {{#if bio}}
+        <p class="hero-subtitle">
+            {{bio}}
+        </p>
+        {{/if}}
+        
+        {{!-- Author Social Links --}}
+        <div class="footer-social" style="justify-content: center; margin-top: var(--space-6);">
+            {{#if website}}
+            <a href="{{website}}" class="social-link" aria-label="Website" target="_blank" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+            </a>
+            {{/if}}
+            {{#if twitter}}
+            <a href="{{twitter}}" class="social-link" aria-label="Twitter" target="_blank" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </a>
+            {{/if}}
+            {{#if facebook}}
+            <a href="{{facebook}}" class="social-link" aria-label="Facebook" target="_blank" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+            {{/if}}
+        </div>
+        
+        <p class="text-muted" style="margin-top: var(--space-6);">
+            {{plural pagination.total empty="Nenhum post" singular="% post publicado" plural="% posts publicados"}}
+        </p>
+    </div>
+</header>
+
+{{!-- Author Posts --}}
+<div class="container">
+    <section class="posts-section">
+        <div class="main-with-sidebar">
+            {{!-- Main Content --}}
+            <div class="main-content">
+                {{#if posts}}
+                <div class="post-grid">
+                    {{#foreach posts}}
+                    {{> post-card}}
+                    {{/foreach}}
+                </div>
+                
+                {{!-- Pagination --}}
+                {{> pagination}}
+                {{else}}
+                <div class="text-center" style="padding: var(--space-16) 0;">
+                    <p class="text-muted">Este autor ainda não publicou nenhum post.</p>
+                </div>
+                {{/if}}
+            </div>
+            
+            {{!-- Sidebar --}}
+            {{> sidebar}}
+        </div>
+    </section>
+</div>
+

@@ -1,0 +1,80 @@
+{{!-- Featured Posts Slider --}}
+{{#get "posts" filter="featured:true" limit="6"}}
+{{#if posts}}
+<section class="featured-slider">
+    <div class="slider-wrapper">
+        {{!-- Main Slide Area --}}
+        <div class="slider-main">
+            <div class="slider-container">
+                <div class="slider-track" id="slider-track">
+                    {{#foreach posts}}
+                    <div class="slider-slide{{#if @first}} active{{/if}}" data-slide-index="{{@index}}">
+                        {{!-- Featured Image --}}
+                        <div class="slide-image-container">
+                            {{#if feature_image}}
+                            <img 
+                                src="{{img_url feature_image size="xl"}}" 
+                                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                                class="slide-image"
+                                loading="{{#if @first}}eager{{else}}lazy{{/if}}"
+                            >
+                            {{else}}
+                            <div class="slide-image bg-gradient-sunset"></div>
+                            {{/if}}
+                        </div>
+                        
+                        {{!-- Post Card --}}
+                        <div class="slide-card">
+                            <a href="{{url}}" class="slide-card-link">
+                                {{#if primary_tag}}
+                                <span class="slide-card-tag">{{primary_tag.name}}</span>
+                                {{/if}}
+                                <h2 class="slide-card-title">{{title}}</h2>
+                                {{#if excerpt}}
+                                <p class="slide-card-excerpt">{{excerpt words="25"}}</p>
+                                {{/if}}
+                                <div class="slide-card-meta">
+                                    <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                                    {{#if reading_time}}
+                                    <span>&bull;</span>
+                                    <span>{{reading_time}} min</span>
+                                    {{/if}}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {{/foreach}}
+                </div>
+            </div>
+        </div>
+        
+        {{!-- Sidebar Navigation --}}
+        <div class="slider-sidebar">
+            <h3 class="slider-sidebar-title">Próximos Posts</h3>
+            <div class="slider-sidebar-nav" id="slider-sidebar-nav">
+                {{#foreach posts}}
+                <button 
+                    class="slider-sidebar-item{{#if @first}} active{{/if}}" 
+                    aria-label="Ver post: {{title}}"
+                    data-slide-index="{{@index}}"
+                    data-slide-url="{{url}}"
+                >
+                    {{#if feature_image}}
+                    <img 
+                        src="{{img_url feature_image size="s"}}" 
+                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                        class="slider-sidebar-item-image"
+                        loading="lazy"
+                    >
+                    {{else}}
+                    <div class="slider-sidebar-item-image slider-sidebar-item-image-placeholder bg-gradient-sunset"></div>
+                    {{/if}}
+                </button>
+                {{/foreach}}
+            </div>
+        </div>
+    </div>
+</section>
+{{/if}}
+{{/get}}
+

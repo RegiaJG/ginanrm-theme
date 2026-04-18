@@ -1,0 +1,59 @@
+{{!< default}}
+
+{{!-- 
+    Custom Page Template: Downloads
+    Use this by selecting "downloads" in the page template dropdown in Ghost
+--}}
+
+{{#post}}
+<article class="post-full page-downloads">
+    {{!-- Page Header --}}
+    <header class="hero" style="min-height: 40vh; padding-top: calc(var(--header-height) + var(--space-8));">
+        <div class="hero-background bg-gradient-sunset">
+            <div class="stars"></div>
+        </div>
+        
+        <div class="hero-content">
+            <span class="post-header-tag" style="margin-bottom: var(--space-4);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display: inline; vertical-align: middle; margin-right: 4px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Downloads
+            </span>
+            <h1 class="hero-title" style="font-size: var(--text-2xl);">{{title}}</h1>
+            
+            {{#if custom_excerpt}}
+            <p class="hero-subtitle">{{custom_excerpt}}</p>
+            {{/if}}
+        </div>
+    </header>
+    
+    {{!-- Page Content --}}
+    <div class="container">
+        <section class="post-content gh-content" style="padding-top: var(--space-12);">
+            {{content}}
+        </section>
+        
+        {{!-- Related Downloads Posts --}}
+        {{#get "posts" filter="tag:downloads" limit="6"}}
+        {{#if posts}}
+        <section class="posts-section">
+            <header class="section-header">
+                <h2 class="section-title">Downloads Recentes</h2>
+                <a href="{{@site.url}}/tag/downloads/" class="btn btn-ghost btn-sm">
+                    Ver todos
+                </a>
+            </header>
+            
+            <div class="post-grid">
+                {{#foreach posts}}
+                {{> post-card}}
+                {{/foreach}}
+            </div>
+        </section>
+        {{/if}}
+        {{/get}}
+    </div>
+</article>
+{{/post}}
+

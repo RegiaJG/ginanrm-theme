@@ -1,0 +1,249 @@
+{{!< default}}
+
+{{!-- Search Header --}}
+<header class="hero" style="min-height: 50vh; padding-top: calc(var(--header-height) + var(--space-12));">
+    <div class="hero-background bg-gradient-sunset">
+        <div class="stars"></div>
+    </div>
+    
+    <div class="hero-content">
+        <span class="post-header-tag" style="margin-bottom: var(--space-4);">Busca</span>
+        <h1 class="hero-title" style="font-size: var(--text-2xl);">
+            Resultados da Pesquisa
+        </h1>
+        
+        <p class="hero-subtitle">
+            Buscando por: <strong id="search-query-display">...</strong>
+        </p>
+    </div>
+</header>
+
+{{!-- Search Results Section --}}
+<div class="container">
+    <section class="posts-section">
+        <div class="main-with-sidebar">
+            {{!-- Main Content --}}
+            <div class="main-content">
+                <div id="search-results-container">
+                    <div class="text-center" style="padding: var(--space-16) 0;">
+                        <p class="text-muted" style="font-size: var(--text-lg);">
+                            <span id="search-loading">Carregando resultados...</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            {{!-- Sidebar --}}
+            {{> sidebar}}
+        </div>
+    </section>
+</div>
+
+{{!-- Script to perform search using Ghost Content API --}}
+<script>
+(function() {
+    console.log('Search page script loaded');
+    
+    // Get search query from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('q');
+    
+    console.log('Search query:', searchQuery);
+    
+    // Display search query
+    const queryDisplay = document.getElementById('search-query-display');
+    if (queryDisplay) {
+        if (searchQuery) {
+            queryDisplay.textContent = '"' + searchQuery + '"';
+        } else {
+            queryDisplay.textContent = 'nenhum termo especificado';
+        }
+    }
+    
+    // If no search query, show message
+    if (!searchQuery || searchQuery.trim() === '') {
+        const container = document.getElementById('search-results-container');
+        if (container) {
+            container.innerHTML = '<div class="text-center" style="padding: var(--space-16) 0;">' +
+                '<p class="text-muted" style="font-size: var(--text-lg); margin-bottom: var(--space-4);">' +
+                'Por favor, digite um termo de busca.' +
+                '</p>' +
+                '<a href="{{@site.url}}" class="btn btn-primary" style="margin-top: var(--space-6);">' +
+                'Voltar para Home' +
+                '</a>' +
+                '</div>';
+        }
+        return;
+    }
+    
+    // Perform search using Ghost Content API
+    const siteUrl = '{{@site.url}}';
+    console.log('Site URL:', siteUrl);
+    
+    // Build API URL - try without key first (public access)
+    // Use a simpler search filter that works better with Ghost API
+    const searchTerm = encodeURIComponent(searchQuery.trim());
+    // Try multiple search approaches
+    let apiUrl = siteUrl + '/ghost/api/content/posts/?limit=20&fields=id,title,slug,feature_image,excerpt,published_at,reading_time,primary_author,primary_tag,url';
+    
+    // Try with filter first
+    const apiUrlWithFilter = apiUrl + '&filter=title:~' + searchTerm;
+    
+    console.log('API URL (with filter):', apiUrlWithFilter);
+    
+    const container = document.getElementById('search-results-container');
+    const loadingEl = document.getElementById('search-loading');
+    
+    if (loadingEl) {
+        loadingEl.textContent = 'Buscando...';
+    }
+    
+    // Function to filter posts client-side
+    function filterPosts(posts, query) {
+        if (!posts || !query) return posts || [];
+        const lowerQuery = query.toLowerCase();
+        return posts.filter(function(post) {
+            const titleMatch = post.title && post.title.toLowerCase().includes(lowerQuery);
+            const excerptMatch = post.excerpt && post.excerpt.toLowerCase().includes(lowerQuery);
+            const tagMatch = post.primary_tag && post.primary_tag.name && post.primary_tag.name.toLowerCase().includes(lowerQuery);
+            const authorMatch = post.primary_author && post.primary_author.name && post.primary_author.name.toLowerCase().includes(lowerQuery);
+            return titleMatch || excerptMatch || tagMatch || authorMatch;
+        });
+    }
+    
+    // Function to render posts
+    function renderPosts(posts) {
+        if (loadingEl) {
+            loadingEl.style.display = 'none';
+        }
+        
+        if (posts && posts.length > 0) {
+            console.log('Rendering', posts.length, 'posts');
+            let html = '<div class="post-grid">';
+            
+            posts.forEach(function(post) {
+                html += '<article class="post-card">';
+                
+                // Image link
+                html += '<a href="' + (post.url || '#') + '" class="post-card-image-link">';
+                html += '<div class="post-card-image">';
+                if (post.feature_image) {
+                    html += '<img src="' + post.feature_image + '" alt="' + (post.title || '').replace(/"/g, '&quot;') + '" loading="lazy">';
+                } else {
+                    const placeholderUrl = siteUrl + '/content/images/placeholder.jpg';
+                    html += '<img src="' + placeholderUrl + '" alt="' + (post.title || '').replace(/"/g, '&quot;') + '" loading="lazy">';
+                }
+                if (post.primary_tag && post.primary_tag.name) {
+                    html += '<span class="post-card-tag">' + post.primary_tag.name.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>';
+                }
+                html += '</div></a>';
+                
+                // Content
+                html += '<div class="post-card-content">';
+                html += '<a href="' + (post.url || '#') + '"><h2 class="post-card-title">' + (post.title || '').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</h2></a>';
+                
+                if (post.excerpt) {
+                    html += '<p class="post-card-excerpt">' + post.excerpt.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</p>';
+                }
+                
+                html += '<div class="post-card-meta">';
+                if (post.primary_author) {
+                    if (post.primary_author.profile_image) {
+                        html += '<img src="' + post.primary_author.profile_image + '" alt="' + (post.primary_author.name || '').replace(/"/g, '&quot;') + '" class="post-card-author-image" loading="lazy">';
+                    }
+                    html += '<span>' + (post.primary_author.name || '').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>';
+                }
+                html += '<span>&bull;</span>';
+                if (post.published_at) {
+                    const date = new Date(post.published_at);
+                    const formattedDate = date.toLocaleDateString('pt-BR', { 
+                        day: '2-digit', 
+                        month: 'short', 
+                        year: 'numeric' 
+                    });
+                    html += '<time datetime="' + date.toISOString().split('T')[0] + '">' + formattedDate + '</time>';
+                }
+                if (post.reading_time) {
+                    html += '<span>&bull;</span><span>' + post.reading_time + ' min de leitura</span>';
+                }
+                html += '</div></div></article>';
+            });
+            
+            html += '</div>';
+            if (container) {
+                container.innerHTML = html;
+            }
+        } else {
+            console.log('No posts to render');
+            // No results found
+            if (container) {
+                container.innerHTML = '<div class="text-center" style="padding: var(--space-16) 0;">' +
+                    '<p class="text-muted" style="font-size: var(--text-lg); margin-bottom: var(--space-4);">' +
+                    'Nenhum resultado encontrado para sua busca.' +
+                    '</p>' +
+                    '<p class="text-muted" style="font-size: var(--text-sm); margin-bottom: var(--space-6);">' +
+                    'Tente usar termos diferentes ou verifique a ortografia.' +
+                    '</p>' +
+                    '<a href="{{@site.url}}" class="btn btn-primary" style="margin-top: var(--space-6);">' +
+                    'Voltar para Home' +
+                    '</a>' +
+                    '</div>';
+            }
+        }
+    }
+    
+    // Try with filter first
+    fetch(apiUrlWithFilter)
+        .then(function(response) {
+            console.log('API Response status:', response.status);
+            if (!response.ok) {
+                // Try to get error message
+                return response.text().then(function(text) {
+                    console.error('API Error response:', text);
+                    throw new Error('API request failed: ' + response.status + ' - ' + text);
+                });
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            console.log('API Response data:', data);
+            
+            if (data.posts && data.posts.length > 0) {
+                renderPosts(data.posts);
+            } else {
+                // If no results with filter, try getting all posts and filtering client-side
+                console.log('No results with filter, trying to fetch all posts...');
+                return fetch(apiUrl).then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('API request failed: ' + response.status);
+                    }
+                    return response.json();
+                }).then(function(allData) {
+                    console.log('All posts fetched:', allData.posts ? allData.posts.length : 0);
+                    const filteredPosts = filterPosts(allData.posts, searchQuery);
+                    renderPosts(filteredPosts);
+                });
+            }
+        })
+        .catch(function(error) {
+            console.error('Search error:', error);
+            if (loadingEl) {
+                loadingEl.style.display = 'none';
+            }
+            if (container) {
+                container.innerHTML = '<div class="text-center" style="padding: var(--space-16) 0;">' +
+                    '<p class="text-muted" style="font-size: var(--text-lg); margin-bottom: var(--space-4);">' +
+                    'Erro ao realizar a busca: ' + error.message +
+                    '</p>' +
+                    '<p class="text-muted" style="font-size: var(--text-sm); margin-bottom: var(--space-6);">' +
+                    'A Content API do Ghost pode não estar habilitada ou acessível. Verifique o console do navegador para mais detalhes.' +
+                    '</p>' +
+                    '<a href="{{@site.url}}" class="btn btn-primary" style="margin-top: var(--space-6);">' +
+                    'Voltar para Home' +
+                    '</a>' +
+                    '</div>';
+            }
+        });
+})();
+</script>
+

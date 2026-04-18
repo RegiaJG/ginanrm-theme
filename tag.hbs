@@ -1,0 +1,57 @@
+{{!< default}}
+
+{{!-- Tag Header --}}
+<header class="hero" style="min-height: 50vh; padding-top: calc(var(--header-height) + var(--space-12));">
+    <div class="hero-background bg-gradient-sunset">
+        <div class="stars"></div>
+    </div>
+    
+    <div class="hero-content">
+        <span class="post-header-tag" style="margin-bottom: var(--space-4);">Tag</span>
+        <h1 class="hero-title" style="font-size: var(--text-2xl);">
+            #{{tag.name}}
+        </h1>
+        
+        {{#if tag.description}}
+        <p class="hero-subtitle">
+            {{tag.description}}
+        </p>
+        {{else}}
+        <p class="hero-subtitle">
+            {{plural pagination.total empty="Nenhum post" singular="% post" plural="% posts"}} com esta tag
+        </p>
+        {{/if}}
+    </div>
+</header>
+
+{{!-- Posts Section --}}
+<div class="container">
+    <section class="posts-section">
+        <div class="main-with-sidebar">
+            {{!-- Main Content --}}
+            <div class="main-content">
+                {{#if posts}}
+                <div class="post-grid">
+                    {{#foreach posts}}
+                    {{> post-card}}
+                    {{/foreach}}
+                </div>
+                
+                {{!-- Pagination --}}
+                {{> pagination}}
+                {{else}}
+                <div class="text-center" style="padding: var(--space-16) 0;">
+                    <p class="text-muted">Nenhum post encontrado com esta tag.</p>
+                    <a href="{{@site.url}}" class="btn btn-primary" style="margin-top: var(--space-6);">
+                        Voltar para Home
+                    </a>
+                </div>
+                {{/if}}
+            </div>
+            
+            {{!-- Sidebar --}}
+            {{> sidebar}}
+        </div>
+    </section>
+</div>
+

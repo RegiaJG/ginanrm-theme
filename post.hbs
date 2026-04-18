@@ -1,0 +1,117 @@
+{{!< default}}
+
+{{#post}}
+<article class="post-full">
+    {{!-- Post Header --}}
+    <header class="post-header">
+        {{#if primary_tag}}
+        <a href="{{primary_tag.url}}" class="post-header-tag">{{primary_tag.name}}</a>
+        {{/if}}
+        
+        <h1 class="post-full-title">{{title}}</h1>
+        
+        <div class="post-full-meta">
+            <div class="post-full-author">
+                {{#if primary_author.profile_image}}
+                <img 
+                    src="{{img_url primary_author.profile_image size="xs"}}" 
+                    alt="{{primary_author.name}}" 
+                    class="post-full-author-image"
+                >
+                {{/if}}
+                <a href="{{primary_author.url}}">{{primary_author.name}}</a>
+            </div>
+            
+            <time datetime="{{date format="YYYY-MM-DD"}}">
+                {{date format="DD [de] MMMM [de] YYYY"}}
+            </time>
+            
+            {{#if reading_time}}
+            <span>{{reading_time}} min de leitura</span>
+            {{/if}}
+        </div>
+    </header>
+    
+    {{!-- Feature Image --}}
+    {{#if feature_image}}
+    <figure class="post-feature-image">
+        <img 
+            src="{{img_url feature_image size="xl"}}" 
+            srcset="{{img_url feature_image size="m"}} 600w,
+                    {{img_url feature_image size="l"}} 1000w,
+                    {{img_url feature_image size="xl"}} 2000w"
+            sizes="(max-width: 1200px) 100vw, 1200px"
+            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+        >
+        {{#if feature_image_caption}}
+        <figcaption>{{feature_image_caption}}</figcaption>
+        {{/if}}
+    </figure>
+    {{/if}}
+    
+    {{!-- Post Content --}}
+    <section class="post-content gh-content">
+        {{content}}
+    </section>
+    
+    {{!-- Post Tags --}}
+    {{#if tags}}
+    <footer class="post-footer" style="max-width: 720px; margin: var(--space-12) auto 0; padding: 0 var(--space-4);">
+        <div class="tags-cloud">
+            {{#foreach tags}}
+            <a href="{{url}}" class="tag-link">#{{name}}</a>
+            {{/foreach}}
+        </div>
+    </footer>
+    {{/if}}
+</article>
+
+{{!-- Author Section --}}
+<section class="container" style="margin-top: var(--space-12);">
+    <div class="sidebar-widget" style="max-width: 720px; margin: 0 auto;">
+        <div class="flex gap-4" style="align-items: flex-start;">
+            {{#if primary_author.profile_image}}
+            <img 
+                src="{{img_url primary_author.profile_image size="s"}}" 
+                alt="{{primary_author.name}}" 
+                style="width: 80px; height: 80px; border-radius: var(--radius-full); object-fit: cover;"
+            >
+            {{/if}}
+            <div>
+                <h3 style="font-family: var(--font-heading); margin-bottom: var(--space-2);">
+                    <a href="{{primary_author.url}}" style="color: var(--lc-neon-cyan);">{{primary_author.name}}</a>
+                </h3>
+                {{#if primary_author.bio}}
+                <p style="color: var(--lc-gray-400); font-size: var(--text-sm); margin-bottom: 0;">
+                    {{primary_author.bio}}
+                </p>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</section>
+
+{{!-- Related Posts --}}
+{{#get "posts" filter="tags:[{{tags}}]+id:-{{id}}" limit="3"}}
+{{#if posts}}
+<section class="posts-section container">
+    <header class="section-header">
+        <h2 class="section-title">Posts Relacionados</h2>
+    </header>
+    
+    <div class="post-grid">
+        {{#foreach posts}}
+        {{> post-card}}
+        {{/foreach}}
+    </div>
+</section>
+{{/if}}
+{{/get}}
+
+{{!-- Newsletter --}}
+<div class="container">
+    {{> newsletter}}
+</div>
+
+{{/post}}
+

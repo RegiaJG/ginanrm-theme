@@ -1,0 +1,280 @@
+{{!-- Template de Página de Vendas --}}
+<article class="post-full page-vendas">
+    {{!-- Hero Section --}}
+    <section class="sales-hero">
+        <div class="container">
+            <div class="sales-hero-content">
+                {{!-- Capa do E-book --}}
+                {{#if feature_image}}
+                <div class="sales-hero-cover">
+                    <img 
+                        src="{{img_url feature_image size="xl"}}" 
+                        alt="{{title}}"
+                        class="ebook-cover-image"
+                    >
+                </div>
+                {{/if}}
+                
+                <h1 class="sales-hero-title">{{title}}</h1>
+                {{#if custom_excerpt}}
+                <p class="sales-hero-subtitle">{{custom_excerpt}}</p>
+                {{/if}}
+                
+                {{!-- CTA Principal --}}
+                <div class="sales-cta-primary">
+                    <a href="https://pay.hotmart.com/P103575870O" class="btn btn-sales-primary" target="_blank" rel="noopener">
+                        <span class="btn-text-main">COMPRAR AGORA</span>
+                        <span class="btn-text-sub">Acesso Imediato</span>
+                    </a>
+                    <p class="sales-cta-note">✓ Pagamento 100% Seguro • Hotmart</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{!-- Conteúdo Principal (do editor Ghost) --}}
+    <div class="container">
+        <section class="sales-content">
+            <div class="post-content gh-content">
+                {{content}}
+            </div>
+        </section>
+
+        {{!-- Seção: O Que Você NÃO Precisa --}}
+        <section class="sales-no-need">
+            <h2 class="sales-section-title">O Que Você <span style="color: var(--lc-amethyst);">NÃO</span> Precisa</h2>
+            <div class="no-need-grid">
+                <div class="no-need-item">
+                    <span class="no-need-icon">❌</span>
+                    <p class="no-need-text">Placa de Vídeo cara ou PC Gamer</p>
+                </div>
+                <div class="no-need-item">
+                    <span class="no-need-icon">❌</span>
+                    <p class="no-need-text">Conhecimento avançado de Linux/Python</p>
+                </div>
+                <div class="no-need-item">
+                    <span class="no-need-icon">❌</span>
+                    <p class="no-need-text">Falar inglês fluente</p>
+                </div>
+            </div>
+        </section>
+
+        {{!-- Seção: O Que Você Vai Dominar --}}
+        <section class="sales-benefits">
+            <h2 class="sales-section-title">O Que Você Vai Dominar</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">☁️</div>
+                    <h3 class="benefit-title">Alquimia na Nuvem</h3>
+                    <p class="benefit-description">Como configurar e operar GPUs Industriais (RTX A5000/A4000) remotamente, pagando apenas centavos por hora.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛡️</div>
+                    <h3 class="benefit-title">Instalação Blindada</h3>
+                    <p class="benefit-description">Como fugir dos instaladores quebrados usando nosso método exclusivo via JupyterLab.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💾</div>
+                    <h3 class="benefit-title">Permanência</h3>
+                    <p class="benefit-description">Como configurar o Network Volume para salvar seus arquivos e nunca perder seu trabalho ao desligar a máquina.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3 class="benefit-title">Poder de Processamento</h3>
+                    <p class="benefit-description">Tenha o poder de processamento de um estúdio profissional rodando liso no seu navegador, sem fritar sua máquina.</p>
+                </div>
+            </div>
+        </section>
+
+        {{!-- Seção de Entregáveis --}}
+        <section class="sales-deliverables">
+            <h2 class="sales-section-title">🎁 Entregáveis de Elite</h2>
+            <p class="sales-deliverables-subtitle">O que facilita sua vida</p>
+            <div class="deliverables-grid">
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">📄</div>
+                    <h3 class="deliverable-title">O Manual Tático (PDF)</h3>
+                    <p class="deliverable-description">Direto, visual e sem enrolação. Tudo que você precisa saber para dominar o ComfyUI na nuvem.</p>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">💻</div>
+                    <h3 class="deliverable-title">Script de Instalação Automatizado (.sh)</h3>
+                    <p class="deliverable-description">Um arquivo exclusivo nosso. Você arrasta, solta e ele instala todo o ambiente para você.</p>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">⚙️</div>
+                    <h3 class="deliverable-title">Workflow Mestre (.json)</h3>
+                    <p class="deliverable-description">O fluxo pronto para gerar sua primeira imagem. É só carregar e rodar.</p>
+                </div>
+            </div>
+        </section>
+
+        {{!-- Seção de Depoimentos --}}
+        <section class="sales-testimonials">
+            <h2 class="sales-section-title">O Que Dizem Nossos Leitores</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Este e-book mudou completamente minha perspectiva. Recomendo!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Nome do Cliente</strong>
+                        <span>Profissão/Cargo</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Conteúdo de altíssima qualidade. Valeu cada centavo investido."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Nome do Cliente</strong>
+                        <span>Profissão/Cargo</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Superou todas as minhas expectativas. Já estou aplicando os conhecimentos!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Nome do Cliente</strong>
+                        <span>Profissão/Cargo</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{!-- CTA Intermediário --}}
+        <section class="sales-cta-section">
+            <div class="sales-cta-box">
+                <h2 class="sales-cta-title">Pronto Para Transformar Seu Conhecimento?</h2>
+                <p class="sales-cta-description">Garanta seu acesso agora e comece sua jornada imediatamente.</p>
+                <a href="https://pay.hotmart.com/P103575870O" class="btn btn-sales-primary" target="_blank" rel="noopener">
+                    <span class="btn-text-main">QUERO MEU E-BOOK AGORA</span>
+                    <span class="btn-text-sub">Acesso Imediato e Vitalício</span>
+                </a>
+            </div>
+        </section>
+
+        {{!-- FAQ Section --}}
+        <section class="sales-faq">
+            <h2 class="sales-section-title">Perguntas Frequentes</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Como recebo o conteúdo após a compra?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Após a confirmação do pagamento, você receberá o acesso imediato através do email cadastrado. O PDF, script e workflow estarão disponíveis na sua área de membros da Hotmart.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Preciso ter conhecimento técnico avançado?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Não! O manual foi criado para iniciantes. Você não precisa de conhecimento avançado de Linux, Python ou inglês fluente. Tudo está explicado passo a passo.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Quanto custa usar o RunPod?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O RunPod cobra apenas pelos minutos que você usa. Com GPUs RTX A5000/A4000, você paga centavos por hora. Muito mais barato que investir R$ 15.000 em uma placa de vídeo!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>O pagamento é seguro?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Utilizamos a plataforma Hotmart, que é 100% segura e criptografada. Todas as transações são processadas de forma segura. Aceitamos cartão de crédito, boleto e PIX.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Tenho garantia de satisfação?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Oferecemos garantia incondicional de 7 dias. Se não ficar satisfeito, devolvemos 100% do seu investimento, sem perguntas ou burocracias.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{!-- Seção de Garantia --}}
+        <section class="sales-guarantee">
+            <div class="guarantee-box">
+                <div class="guarantee-icon">🛡️</div>
+                <h2 class="guarantee-title">Garantia Incondicional de 7 Dias</h2>
+                <p class="guarantee-description">
+                    Teste nosso e-book por 7 dias completos. Se por qualquer motivo não ficar satisfeito, 
+                    devolvemos 100% do seu investimento, sem perguntas ou burocracias.
+                </p>
+            </div>
+        </section>
+
+        {{!-- CTA Final --}}
+        <section class="sales-cta-final" id="comprar-agora">
+            <div class="sales-cta-final-box">
+                <h2 class="sales-cta-final-title">Não Deixe Esta Oportunidade Passar</h2>
+                <p class="sales-cta-final-subtitle">Acesso imediato • Garantia de 7 dias • Suporte completo</p>
+                <a href="https://pay.hotmart.com/P103575870O" class="btn btn-sales-final" target="_blank" rel="noopener">
+                    <span class="btn-text-main">COMPRAR AGORA</span>
+                    <span class="btn-text-sub">Acesso Vitalício</span>
+                </a>
+                <p class="sales-cta-security">
+                    🔒 Pagamento 100% Seguro • Hotmart
+                </p>
+            </div>
+        </section>
+    </div>
+</article>
+
+{{!-- JavaScript para FAQ Accordion --}}
+<script>
+(function() {
+    document.querySelectorAll('.faq-question').forEach(function(question) {
+        question.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector('.faq-icon');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item').forEach(function(item) {
+                if (item !== this.parentElement) {
+                    item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                    item.querySelector('.faq-answer').style.maxHeight = null;
+                    item.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                }
+            }.bind(this));
+            
+            // Toggle current FAQ
+            this.setAttribute('aria-expanded', !isExpanded);
+            if (isExpanded) {
+                answer.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+})();
+</script>
+

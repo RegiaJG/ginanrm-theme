@@ -1,0 +1,41 @@
+{{!-- Newsletter Section --}}
+{{#if @site.members_enabled}}
+<section class="newsletter-section">
+    <div class="newsletter-content">
+        <h2 class="newsletter-title">FIQUE POR DENTRO</h2>
+        <p class="newsletter-description">
+            Receba as últimas novidades sobre IA, tutoriais exclusivos e insights da GinanRM diretamente no seu email.
+        </p>
+        
+        {{#unless @member}}
+        <form class="newsletter-form" data-members-form="subscribe">
+            <input 
+                type="email" 
+                class="newsletter-input" 
+                placeholder="seu email" 
+                required
+                data-members-email
+            >
+            <button type="submit" class="btn btn-primary">
+                Inscrever-se
+            </button>
+        </form>
+        
+        {{!-- Form Messages --}}
+        <div class="form-message" style="margin-top: var(--space-4); font-size: var(--text-sm);">
+            <p class="message-success" style="display: none; color: var(--lc-success);">
+                ✓ Quase lá! Verifique seu email para confirmar.
+            </p>
+            <p class="message-error" style="display: none; color: var(--lc-error);">
+                Ops! Algo deu errado. Tente novamente.
+            </p>
+        </div>
+        {{else}}
+        <p style="color: var(--lc-neon-cyan); font-size: var(--text-lg);">
+            ✓ Você já faz parte da comunidade GinanRM!
+        </p>
+        {{/unless}}
+    </div>
+</section>
+{{/if}}
+

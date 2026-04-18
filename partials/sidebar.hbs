@@ -1,0 +1,70 @@
+<aside class="sidebar">
+    {{!-- Search Widget --}}
+    <div class="sidebar-widget">
+        <h3 class="sidebar-title">Buscar</h3>
+        <div class="sidebar-search">
+            <svg class="sidebar-search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input 
+                type="text" 
+                class="sidebar-search-input" 
+                placeholder="Buscar posts, tags..."
+                data-search-input
+            >
+        </div>
+    </div>
+    
+    {{!-- Links Fixados Widget --}}
+    <div class="sidebar-widget">
+        <h3 class="sidebar-title">Links Fixados</h3>
+        <div class="pinned-links" id="pinned-links-container">
+            {{!-- Try Ghost helper first --}}
+            {{navigation type="secondary"}}
+            
+            {{!-- Also try foreach in case it works --}}
+            {{#foreach navigation.secondary}}
+            <a href="{{url}}" class="pinned-link" data-label="{{label}}" style="display: none;">
+                <svg class="pinned-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                </svg>
+                <div class="pinned-link-content">
+                    <span class="pinned-link-label">{{label}}</span>
+                </div>
+            </a>
+            {{/foreach}}
+        </div>
+    </div>
+    
+    {{!-- Popular Tags Widget --}}
+    <div class="sidebar-widget">
+        <h3 class="sidebar-title">Tags Populares</h3>
+        <div class="tags-cloud">
+            {{#get "tags" limit="12" order="count.posts desc"}}
+                {{#foreach tags}}
+                <a href="{{url}}" class="tag-link">#{{name}}</a>
+                {{/foreach}}
+            {{/get}}
+        </div>
+    </div>
+    
+    {{!-- Newsletter Widget --}}
+    {{#if @site.members_enabled}}
+    <div class="sidebar-widget">
+        <h3 class="sidebar-title">Fique por dentro</h3>
+        <p style="font-size: var(--text-sm); color: var(--lc-gray-400); margin-bottom: var(--space-4);">
+            Receba as últimas novidades sobre IA diretamente no seu email.
+        </p>
+        {{#unless @member}}
+        <a href="#/portal/signup" class="btn btn-primary w-full" data-portal="signup">
+            Inscrever-se
+        </a>
+        {{else}}
+        <p style="font-size: var(--text-sm); color: var(--lc-neon-cyan);">
+            ✓ Você já está inscrito!
+        </p>
+        {{/unless}}
+    </div>
+    {{/if}}
+</aside>
+

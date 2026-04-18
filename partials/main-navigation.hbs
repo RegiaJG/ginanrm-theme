@@ -1,0 +1,17 @@
+{{!-- Main Navigation Section --}}
+<nav class="main-navigation-section" role="navigation" aria-label="Navegação principal">
+    <div class="main-navigation-inner" id="main-navigation-inner">
+        {{!-- Try using Ghost's navigation helper directly --}}
+        {{navigation}}
+        
+        {{!-- Also try foreach in case navigation variable exists --}}
+        {{#foreach navigation}}
+        <a href="{{url}}" class="main-nav-item{{#if current}} active{{/if}}" style="display: none;">
+            {{label}}
+        </a>
+        {{/foreach}}
+        
+        {{!-- JavaScript will extract and style the links --}}
+    </div>
+</nav>
+

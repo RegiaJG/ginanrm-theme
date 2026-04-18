@@ -1,0 +1,26 @@
+{{!< default}}
+
+<div class="error-page bg-city">
+    <div class="hero-background">
+        <div class="stars"></div>
+    </div>
+    
+    <h1 class="error-code">404</h1>
+    
+    <h2 class="error-title">Página não encontrada</h2>
+    
+    <p class="error-description">
+        Ops! Parece que Charlotte não conseguiu encontrar essa página nas sombras. 
+        Ela pode ter sido movida, excluída ou talvez nunca tenha existido neste reino.
+    </p>
+    
+    <div class="flex gap-4" style="justify-content: center; flex-wrap: wrap;">
+        <a href="{{@site.url}}" class="btn btn-primary">
+            Voltar para Home
+        </a>
+        <button onclick="history.back()" class="btn btn-ghost">
+            Voltar
+        </button>
+    </div>
+</div>
+

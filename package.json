@@ -1,0 +1,130 @@
+{
+  "name": "ginanrm",
+  "description": "Tema Ghost para GinanRM - Tema dark e gótico",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "GinanRM Team",
+    "email": "contato@ginanrm.com"
+  },
+  "keywords": [
+    "ghost-theme",
+    "ginanrm",
+    "cyberpunk",
+    "ai",
+    "ia",
+    "synthwave",
+    "pixel-art"
+  ],
+  "config": {
+    "posts_per_page": 12,
+    "image_sizes": {
+      "xxs": {
+        "width": 30
+      },
+      "xs": {
+        "width": 100
+      },
+      "s": {
+        "width": 300
+      },
+      "m": {
+        "width": 600
+      },
+      "l": {
+        "width": 1000
+      },
+      "xl": {
+        "width": 2000
+      }
+    },
+    "card_assets": true,
+    "custom": {
+      "navigation_layout": {
+        "type": "select",
+        "options": ["Logo on left", "Logo centered"],
+        "default": "Logo on left",
+        "group": "homepage"
+      },
+      "header_style": {
+        "type": "select",
+        "options": ["Transparent", "Solid", "Gradient"],
+        "default": "Transparent",
+        "group": "homepage"
+      },
+      "hero_style": {
+        "type": "select",
+        "options": ["Full with city", "Minimal", "With Charlotte"],
+        "default": "Full with city",
+        "group": "homepage"
+      },
+      "show_featured_slider": {
+        "type": "boolean",
+        "default": true,
+        "group": "homepage"
+      },
+      "show_sidebar": {
+        "type": "boolean",
+        "default": true,
+        "group": "homepage"
+      },
+      "primary_color": {
+        "type": "color",
+        "default": "#00f5d4",
+        "group": "homepage"
+      },
+      "accent_color": {
+        "type": "color",
+        "default": "#8338ec",
+        "group": "homepage"
+      },
+      "enable_animations": {
+        "type": "boolean",
+        "default": true,
+        "group": "homepage"
+      },
+      "show_charlotte_helper": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show Charlotte mascot as a helpful assistant",
+        "group": "homepage"
+      },
+      "footer_text": {
+        "type": "text",
+        "default": "A Capital da Engenharia Generativa.",
+        "group": "homepage"
+      },
+      "background_color": {
+        "type": "color",
+        "default": "#000000",
+        "group": "homepage",
+        "description": "Cor de fundo principal do site"
+      },
+      "background_image": {
+        "type": "image",
+        "group": "homepage",
+        "description": "Imagem de fundo do site (opcional)"
+      }
+    }
+  },
+  "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp build",
+    "zip": "gulp zip"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "gulp-postcss": "^9.0.1",
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^3.0.2",
+    "gulp-zip": "^5.1.0"
+  }
+}
+

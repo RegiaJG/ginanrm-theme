@@ -1,0 +1,225 @@
+{{!< default}}
+
+{{!-- 
+    Custom Page Template: Página de Vendas
+    Use this by selecting "vendas" in the page template dropdown in Ghost
+    Para criar uma landing page de vendas de e-book ou produto digital
+--}}
+
+{{#post}}
+<article class="post-full page-vendas">
+    {{!-- Hero Section --}}
+    <section class="sales-hero">
+        <div class="container">
+            <div class="sales-hero-content">
+                <h1 class="sales-hero-title">{{title}}</h1>
+                {{#if custom_excerpt}}
+                <p class="sales-hero-subtitle">{{custom_excerpt}}</p>
+                {{/if}}
+                
+                {{!-- CTA Principal --}}
+                <div class="sales-cta-primary">
+                    <a href="#comprar-agora" class="btn btn-sales-primary" data-hotmart-link>
+                        <span class="btn-text-main">COMPRAR AGORA</span>
+                        <span class="btn-text-sub">Acesso Imediato</span>
+                    </a>
+                    <p class="sales-cta-note">✓ Pagamento 100% Seguro</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{!-- Conteúdo Principal (do editor Ghost) --}}
+    <div class="container">
+        <section class="sales-content">
+            <div class="post-content gh-content">
+                {{content}}
+            </div>
+        </section>
+
+        {{!-- Seção de Benefícios --}}
+        <section class="sales-benefits">
+            <h2 class="sales-section-title">O Que Você Vai Descobrir</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">✨</div>
+                    <h3 class="benefit-title">Benefício 1</h3>
+                    <p class="benefit-description">Descrição do primeiro benefício principal do seu e-book.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title">Benefício 2</h3>
+                    <p class="benefit-description">Descrição do segundo benefício que vai transformar o conhecimento do leitor.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3 class="benefit-title">Benefício 3</h3>
+                    <p class="benefit-description">Descrição do terceiro benefício que diferencia seu produto.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💎</div>
+                    <h3 class="benefit-title">Benefício 4</h3>
+                    <p class="benefit-description">Descrição do quarto benefício que agrega valor único.</p>
+                </div>
+            </div>
+        </section>
+
+        {{!-- Seção de Depoimentos --}}
+        <section class="sales-testimonials">
+            <h2 class="sales-section-title">O Que Dizem Nossos Leitores</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Este e-book mudou completamente minha perspectiva. Recomendo!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Nome do Cliente</strong>
+                        <span>Profissão/Cargo</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Conteúdo de altíssima qualidade. Valeu cada centavo investido."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Nome do Cliente</strong>
+                        <span>Profissão/Cargo</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Superou todas as minhas expectativas. Já estou aplicando os conhecimentos!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Nome do Cliente</strong>
+                        <span>Profissão/Cargo</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{!-- CTA Intermediário --}}
+        <section class="sales-cta-section">
+            <div class="sales-cta-box">
+                <h2 class="sales-cta-title">Pronto Para Transformar Seu Conhecimento?</h2>
+                <p class="sales-cta-description">Garanta seu acesso agora e comece sua jornada imediatamente.</p>
+                <a href="#comprar-agora" class="btn btn-sales-primary" data-hotmart-link>
+                    <span class="btn-text-main">QUERO MEU E-BOOK AGORA</span>
+                    <span class="btn-text-sub">Acesso Imediato e Vitalício</span>
+                </a>
+            </div>
+        </section>
+
+        {{!-- FAQ Section --}}
+        <section class="sales-faq">
+            <h2 class="sales-section-title">Perguntas Frequentes</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Como recebo o e-book após a compra?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Após a confirmação do pagamento, você receberá o acesso imediato ao e-book através do email cadastrado. O link de download estará disponível na sua área de membros.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>O pagamento é seguro?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Utilizamos a plataforma Hotmart, que é 100% segura e criptografada. Todas as transações são processadas de forma segura.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Tenho garantia de satisfação?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Oferecemos garantia de 7 dias. Se não ficar satisfeito, devolvemos 100% do seu investimento, sem perguntas.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Posso compartilhar o e-book com outras pessoas?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O e-book é de uso pessoal. Compartilhar viola os termos de uso. Cada pessoa precisa adquirir sua própria cópia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{!-- Seção de Garantia --}}
+        <section class="sales-guarantee">
+            <div class="guarantee-box">
+                <div class="guarantee-icon">🛡️</div>
+                <h2 class="guarantee-title">Garantia Incondicional de 7 Dias</h2>
+                <p class="guarantee-description">
+                    Teste nosso e-book por 7 dias completos. Se por qualquer motivo não ficar satisfeito, 
+                    devolvemos 100% do seu investimento, sem perguntas ou burocracias.
+                </p>
+            </div>
+        </section>
+
+        {{!-- CTA Final --}}
+        <section class="sales-cta-final" id="comprar-agora">
+            <div class="sales-cta-final-box">
+                <h2 class="sales-cta-final-title">Não Deixe Esta Oportunidade Passar</h2>
+                <p class="sales-cta-final-subtitle">Acesso imediato • Garantia de 7 dias • Suporte completo</p>
+                <a href="https://pay.hotmart.com/SEU_LINK_AQUI" class="btn btn-sales-final" target="_blank" rel="noopener">
+                    <span class="btn-text-main">COMPRAR AGORA</span>
+                    <span class="btn-text-sub">Acesso Vitalício</span>
+                </a>
+                <p class="sales-cta-security">
+                    🔒 Pagamento 100% Seguro • Hotmart
+                </p>
+            </div>
+        </section>
+    </div>
+</article>
+{{/post}}
+
+{{!-- JavaScript para FAQ Accordion --}}
+<script>
+(function() {
+    document.querySelectorAll('.faq-question').forEach(function(question) {
+        question.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector('.faq-icon');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item').forEach(function(item) {
+                if (item !== this.parentElement) {
+                    item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                    item.querySelector('.faq-answer').style.maxHeight = null;
+                    item.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                }
+            }.bind(this));
+            
+            // Toggle current FAQ
+            this.setAttribute('aria-expanded', !isExpanded);
+            if (isExpanded) {
+                answer.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+})();
+</script>
+

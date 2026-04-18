@@ -1,0 +1,32 @@
+<nav class="mobile-nav" id="mobile-nav" aria-label="Navegação mobile">
+    {{#foreach navigation}}
+    <a href="{{url}}" class="mobile-nav-link{{#if current}} active{{/if}}">{{label}}</a>
+    {{/foreach}}
+    
+    {{!-- Divider --}}
+    <div style="height: 1px; background: rgba(255,255,255,0.1); margin: var(--space-4) 0;"></div>
+    
+    {{!-- Secondary Navigation --}}
+    {{#foreach navigation.secondary}}
+    <a href="{{url}}" class="mobile-nav-link">{{label}}</a>
+    {{/foreach}}
+    
+    {{!-- Member Actions (Mobile) --}}
+    {{#if @site.members_enabled}}
+    <div style="margin-top: var(--space-8);">
+        {{#if @member}}
+        <a href="{{@site.url}}/account" class="btn btn-primary w-full">
+            Minha Conta
+        </a>
+        {{else}}
+        <a href="#/portal/signup" class="btn btn-primary w-full" data-portal="signup">
+            Inscrever-se
+        </a>
+        <a href="#/portal/signin" class="btn btn-ghost w-full" style="margin-top: var(--space-3);" data-portal="signin">
+            Já tenho conta
+        </a>
+        {{/if}}
+    </div>
+    {{/if}}
+</nav>
+

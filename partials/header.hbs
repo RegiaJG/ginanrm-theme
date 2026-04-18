@@ -1,0 +1,52 @@
+<header class="site-header{{#match @custom.navigation_layout "Logo centered"}} header-centered{{/match}}" id="site-header">
+    <div class="header-inner">
+        {{!-- Logo --}}
+        <a href="{{@site.url}}" class="site-logo">
+            {{#if @site.logo}}
+            <img src="{{@site.logo}}" alt="{{@site.title}}">
+            {{else}}
+            <img src="{{asset "images/logo.svg"}}" alt="{{@site.title}}">
+            {{/if}}
+        </a>
+        
+        {{!-- Main Navigation (Desktop) --}}
+        <nav class="main-nav" role="navigation" aria-label="Navegação principal" id="main-nav-menu">
+            {{!-- Ghost navigation helper - JavaScript will process and style --}}
+            {{navigation}}
+        </nav>
+        
+        {{!-- Header Actions --}}
+        <div class="header-actions">
+            {{!-- Search Button --}}
+            <button class="btn-search" aria-label="Buscar" data-search-toggle>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </button>
+            
+            {{!-- Member Actions --}}
+            {{#if @site.members_enabled}}
+                {{#if @member}}
+                <a href="{{@site.url}}/account" class="btn btn-ghost btn-sm">
+                    Conta
+                </a>
+                {{else}}
+                <a href="#/portal/signin" class="nav-link" data-portal="signin">
+                    Entrar
+                </a>
+                <a href="#/portal/signup" class="btn btn-primary btn-sm" data-portal="signup">
+                    Inscrever-se
+                </a>
+                {{/if}}
+            {{/if}}
+            
+            {{!-- Mobile Menu Toggle --}}
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false" data-mobile-menu-toggle>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
