@@ -1,4 +1,7 @@
 *.css linguist-detectable=true
 *.css linguist-vendored=false
 *.hbs linguist-detectable=true
+*.hbs linguist-vendored=false
+*.hbs linguist-language=HTML
 *.js linguist-detectable=true
+*.js linguist-vendored=false
