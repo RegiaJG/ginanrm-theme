@@ -1,166 +1,169 @@
 # 🌙 GinanRM - Ghost Theme
 
-Um tema Ghost moderno e dark inspirado em estética gótica e cyberpunk. Projetado para ensinar IA de forma envolvente e misteriosa.
+A modern dark Ghost theme inspired by gothic and cyberpunk aesthetics. Designed to teach AI in an engaging and mysterious way.
 
 ![GinanRM Preview](https://raw.githubusercontent.com/RegiaJG/ginanrm-theme/main/assets/images/GinanRM.png)
 
-## ✨ Características
+## ✨ Features
 
-- 🎨 **Design Dark e Gótico** - Cores escuras, roxos e efeitos neon
-- 📱 **Mobile First** - Totalmente responsivo e otimizado para dispositivos móveis
-- 🤖 **Charlotte Helper** - Mascote interativo que guia os usuários
-- 🎠 **Slider de Destaques** - Carousel automático para posts em destaque
-- 🔍 **Busca Integrada** - Modal de busca com atalho (Ctrl+K) e injeção de código customizada
-- 🌙 **Animações Suaves** - Transições e efeitos visuais elegantes
-- 🎯 **SEO Otimizado** - Estrutura semântica e meta tags
-- 🌐 **Multilíngue** - Suporte a pt-BR e en
+- 🎨 **Dark & Gothic Design** - Dark colors, purples and neon effects
+- 📱 **Mobile First** - Fully responsive and optimized for mobile devices
+- 🤖 **Charlotte Helper** - Interactive mascot that guides users
+- 🎠 **Featured Slider** - Automatic carousel for featured posts
+- 🔍 **Integrated Search** - Search modal with shortcut (Ctrl+K) and custom code injection
+- 🌙 **Smooth Animations** - Elegant transitions and visual effects
+- 🎯 **SEO Optimized** - Semantic structure and meta tags
+- 🌐 **Multilingual** - Support for pt-BR and en
 
-## 🚀 Instalação
+## 🚀 Installation
 
-### Opção 1: Upload via Ghost Admin
+### Option 1: Upload via Ghost Admin
 
-1. Compacte a pasta do tema em um arquivo `.zip`
-2. Acesse o Ghost Admin → Settings → Theme
-3. Clique em "Upload a theme"
-4. Selecione o arquivo `.zip`
-5. Ative o tema
+1. Compress the theme folder into a `.zip` file
+2. Go to Ghost Admin → Settings → Theme
+3. Click "Upload a theme"
+4. Select the `.zip` file
+5. Activate the theme
 
-### Opção 2: Instalação Manual
+### Option 2: Manual Installation
 
-1. Clone ou copie a pasta do tema para `content/themes/`
-2. Reinicie o Ghost
-3. Ative o tema no Ghost Admin
+1. Clone or copy the theme folder to `content/themes/`
+2. Restart Ghost
+3. Activate the theme in Ghost Admin
 
-## 📁 Estrutura do Tema
+## 📁 Theme Structure
 
 ```
 ginanrm/
 ├── assets/
 │   ├── css/
-│   │   └── main.css          # Estilos principais
+│   │   └── main.css          # Main styles
 │   ├── js/
-│   │   └── main.js           # JavaScript do tema
+│   │   └── main.js           # Theme JavaScript
 │   └── images/
-│       ├── Charlotte.png     # Mascote (ADICIONE!)
-│       ├── hero-city.jpg     # Background hero (ADICIONE!)
-│       ├── logo.svg          # Logo do site
-│       └── placeholder.jpg   # Placeholder para posts
+│       ├── Charlotte.png     # Mascot (ADD!)
+│       ├── hero-city.jpg     # Hero background (ADD!)
+│       ├── logo.svg          # Site logo
+│       └── placeholder.jpg   # Placeholder for posts
 │
-├── partials/                 # Componentes reutilizáveis
+├── partials/                 # Reusable components
 │   ├── header.hbs
 │   ├── footer.hbs
 │   ├── post-card.hbs
 │   ├── sidebar.hbs
 │   └── ...
 │
-├── custom/                   # Templates de página customizados
+├── custom/                   # Custom page templates
 │   ├── page-ferramentas.hbs
 │   ├── page-downloads.hbs
 │   ├── page-sobre.hbs
 │   └── page-lab.hbs
 │
-├── locales/                  # Traduções
+├── locales/                  # Translations
 │   ├── pt-BR.json
 │   └── en.json
 │
-├── default.hbs               # Layout base
-├── index.hbs                 # Página inicial
-├── post.hbs                  # Post individual
-├── page.hbs                  # Página genérica
-├── tag.hbs                   # Listagem por tag
-├── author.hbs                # Página de autor
-├── error.hbs                 # Página de erro
-├── search.hbs                # Página de busca customizada
-├── search-injection-code.js  # Injeção de funcionalidade de busca
-└── package.json              # Configurações do tema
+├── default.hbs               # Base layout
+├── index.hbs                 # Home page
+├── post.hbs                  # Individual post
+├── page.hbs                  # Generic page
+├── tag.hbs                   # Tag listing
+├── author.hbs                # Author page
+├── error.hbs                 # Error page
+├── search.hbs                # Custom search page
+├── search-injection-code.js  # Search feature injection
+└── package.json              # Theme settings
 ```
 
-## 🎨 Personalização
+## 🎨 Customization
 
-### Cores do Tema
+### Theme Colors
 
-Acesse Ghost Admin → Settings → Design → Site-wide para customizar:
+Go to Ghost Admin → Settings → Design → Site-wide to customize:
 
-- **Primary Color** - Cor principal (padrão: cyan neon `#00f5d4`)
-- **Accent Color** - Cor de destaque (padrão: roxo `#8338ec`)
+- **Primary Color** - Main color (default: neon cyan `#00f5d4`)
+- **Accent Color** - Highlight color (default: purple `#8338ec`)
 
-### Opções do Tema
+### Theme Options
 
-O tema oferece várias opções configuráveis:
+The theme offers several configurable options:
 
-| Opção | Descrição |
-|-------|-----------|
-| `navigation_layout` | Posição do logo (esquerda/centro) |
-| `header_style` | Estilo do header (transparente/sólido/gradiente) |
-| `hero_style` | Estilo do hero (completo/minimal/com Charlotte) |
-| `show_featured_slider` | Exibir slider de posts em destaque |
-| `show_sidebar` | Exibir sidebar na home |
-| `enable_animations` | Habilitar animações |
-| `show_charlotte_helper` | Exibir mascote Charlotte |
-| `footer_text` | Texto do rodapé |
+| Option | Description |
+|--------|-------------|
+| `navigation_layout` | Logo position (left/center) |
+| `header_style` | Header style (transparent/solid/gradient) |
+| `hero_style` | Hero style (full/minimal/with Charlotte) |
+| `show_featured_slider` | Show featured posts slider |
+| `show_sidebar` | Show sidebar on home |
+| `enable_animations` | Enable animations |
+| `show_charlotte_helper` | Show Charlotte mascot |
+| `footer_text` | Footer text |
 
-## 🖼️ Imagens Necessárias
+## 🖼️ Required Images
 
-Adicione as seguintes imagens na pasta `assets/images/`:
+Add the following images to the `assets/images/` folder:
 
-1. **`Charlotte.png`** - Imagem do mascote Charlotte (PNG com transparência, ~500x500px)
-2. **`hero-city.jpg`** - Background da cidade para o hero (1920x1080px ou maior)
-3. **`logo.svg`** - Logo do site em SVG
-4. **`placeholder.jpg`** - Imagem placeholder para posts sem imagem
+1. **`Charlotte.png`** - Charlotte mascot image (PNG with transparency, ~500x500px)
+2. **`hero-city.jpg`** - City background for the hero section (1920x1080px or larger)
+3. **`logo.svg`** - Site logo in SVG format
+4. **`placeholder.jpg`** - Placeholder image for posts without a featured image
 
-## 📝 Templates de Página
+## 📝 Page Templates
 
-O tema inclui templates customizados para páginas específicas:
+The theme includes custom templates for specific pages:
 
-- **Ferramentas** (`page-ferramentas.hbs`) - Para listar ferramentas de IA
-- **Downloads** (`page-downloads.hbs`) - Para área de downloads
-- **Sobre** (`page-sobre.hbs`) - Página institucional
-- **The Lab** (`page-lab.hbs`) - Para projetos experimentais
+- **Tools** (`page-ferramentas.hbs`) - For listing AI tools
+- **Downloads** (`page-downloads.hbs`) - For download area
+- **About** (`page-sobre.hbs`) - Institutional page
+- **The Lab** (`page-lab.hbs`) - For experimental projects
 
-Para usar, crie uma página no Ghost e selecione o template no editor.
+To use, create a page in Ghost and select the template in the editor.
 
-## ⌨️ Atalhos de Teclado
+## ⌨️ Keyboard Shortcuts
 
-- `Ctrl/Cmd + K` - Abrir busca
-- `ESC` - Fechar modais
+- `Ctrl/Cmd + K` - Open search
+- `ESC` - Close modals
 
-## 🎯 Navegação Recomendada
+## 🎯 Recommended Navigation
 
-Configure no Ghost Admin → Settings → Navigation:
+Configure in Ghost Admin → Settings → Navigation:
 
-**Primária:**
+**Primary:**
 - Home → /
 - Engineering → /tag/engenharia/
 - The Lab → /lab/
 - Donate → /donate/
 
-**Secundária:**
-- Ferramentas → /ferramentas/
+**Secondary:**
+- Tools → /ferramentas/
 - Downloads → /downloads/
-- Sobre → /sobre/
+- About → /sobre/
 
-## 🔧 Desenvolvimento
+## 🔧 Development
 
-Para desenvolvimento local:
+For local development:
 
 ```bash
-# Instalar dependências
+# Install dependencies
 npm install
 
-# Desenvolvimento com watch
+# Development with watch
 npm run dev
 
-# Build para produção
+# Production build
 npm run build
 
-# Criar arquivo zip para upload no Ghost
+# Create zip file for Ghost upload
 npm run zip
 ```
 
-## 📄 Licença
+## 📄 License
 
-MIT License - Sinta-se livre para usar e modificar!
+MIT License - Feel free to use and modify!
 
 ---
 
-Desenvolvido por **[Lucas Costa Nogueira](https://github.com/RegiaJG)**
+Developed by **[Lucas Costa Nogueira](https://github.com/RegiaJG)**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Lucas%20Costa%20Nogueira-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/lucas-nogueira-017b12191)
+[![GitHub](https://img.shields.io/badge/GitHub-RegiaJG-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/RegiaJG)
